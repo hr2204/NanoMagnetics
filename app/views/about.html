@@ -1,0 +1,40 @@
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Creat a Todo List</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog"   ng-controller="ToDoCtrl">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Creat a Todo List</h4>
+        </div>
+        <div class="modal-body" id="target">
+          <div id="todoapp" >
+            <!--Add Task-->
+            <div id="">
+                <input type="text" name="add-task" class='add task' placeholder="Add your task" ng-model="taskName" ng-keyup="addTask()"/>
+
+            </div>
+         
+            <!--Task list-->
+            <ul id="todo-list">
+                <li ng-repeat="task in tasklist track by $index" ng-mouseenter="task.show = true; item= 'focus'" ng-mouseleave="task.show = false; item = 'nofocus'" ng-class='item'>
+                    <input type="checkbox" name="checkbox" ng-model="task.completed" ng-checked="completeTask()"/>
+                    <span class="completed-{{task.completed}}">{{task.name}}</span>
+                    <span class="glyphicon glyphicon-remove" title="Delete Task" ng-show="task.show" ng-click="deleteTask(tasklist.indexOf(task))"></span>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" ng-click="saveModal()" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="displayTodos" ng-controller="AboutCtrl" data-toggle="modal" data-target="#myModal"> 
+</div>
